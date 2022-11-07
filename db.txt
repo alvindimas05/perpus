@@ -1,0 +1,11 @@
+users :
+username, password, book_id, date_rent, date_return
+
+books :
+book_id, title, author, category, publications, status, date_return
+
+rating :
+book_id, data
+
+rating.data : Array/Object
+username, like, review
