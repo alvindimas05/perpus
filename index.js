@@ -82,6 +82,16 @@ async function search_books(req, res){
     res.json(result);
 }
 
+//book_id
+async function get_book(req, res){
+    var data = await Book.findOne({book_id:req.body.book_id}).select({
+        _id:0,
+        __v:0
+    });
+
+    res.json(data);
+}
+
 //title, author, category, publications
 async function add_book(req, res){
     var body = req.body;
@@ -159,8 +169,10 @@ app.post("/account/login", login_account);
 
 app.get("/books", get_books);
 app.post("/books/search", search_books);
-app.post("/books/add", add_book);
-app.post("/books/edit", edit_book);
 
-app.post("/books/rent", rent_book);
-app.post("/books/return", return_book);
+app.post("/book", get_book);
+app.post("/book/add", add_book);
+app.post("/book/edit", edit_book);
+
+app.post("/book/rent", rent_book);
+app.post("/book/return", return_book);
